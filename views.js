@@ -12,7 +12,7 @@ var ApiConsumerView = Backbone.View.extend({
     },
 
     initialize: function(){
-        $(this.gravatarEl).html(this.gravatarTemplate({'avatar_url': 'codder.png'}));
+        $(this.gravatarEl).html(this.gravatarTemplate({'avatar_url': 'coder.png'}));
     },
 
     set_gravatar: function(model){
