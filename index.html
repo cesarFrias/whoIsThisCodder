@@ -46,7 +46,7 @@
     </script>
 
 <script type="text/template" id="profile_github_template">
-    <table class="table" style="font-size: initial;">
+    <table class="table table-striped" style="font-size: initial;">
         <tr>
             <td style=" width: 35%; ">
                 Nome:
@@ -108,7 +108,7 @@
 </script>
 
 <script type="text/template" id="profile_coderwall_template">
-    <table class="table" style="font-size: initial;">
+    <table class="table table-striped" style="font-size: initial;">
         <tr>
             <td style=" width: 15%; ">
                 Nome:
@@ -146,8 +146,23 @@
         </tr>
 </script>
 
+<script type="text/template" id="too_many_stackoverflow_template">
+    <center>Encontramos <span class="badge badge-info"><%= items.length %></span> usuários.</center>
+
+    <table class="table table-striped">
+        <th>Login</th><th>Reputação</th><th>Idade</th>
+        <% _.each(items, function(person){ %>
+            <tr>
+                <td><%= person.display_name %></td>
+                <td><%= person.reputation %></td>
+                <td><%= person.age || 'Não informado' %></td>
+            </tr>
+        <% }) %>
+    </table>
+</script>
+
 <script type="text/template" id="profile_stackoverflow_template">
-    <table class="table" style="font-size: initial;">
+    <table class="table table-striped" style="font-size: initial;">
         <tr>
             <td style=" width: 15%; ">
                 Login

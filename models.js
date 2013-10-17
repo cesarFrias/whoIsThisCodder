@@ -32,7 +32,7 @@ var PersonStackOverFlowModel = Backbone.Model.extend({
     },
 
     parse: function(data) {
-        if (data.items.length == 1) {
+        if (data.items.length >= 1) {
             if (!data.items[0].company) {
                 data.items[0].company = null;
             }
@@ -43,7 +43,9 @@ var PersonStackOverFlowModel = Backbone.Model.extend({
             return data;
         }
         else {
-            this.trigger('error');
+            if (data.items.length == 0) { this.trigger('error'); }
+            data.qtd = data.items.length;
+            this.trigger('change');
         }
     }
 });

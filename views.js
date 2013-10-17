@@ -82,6 +82,7 @@ var PersonCoderwallView = ApiConsumerView.extend({
 var PersonStackOverFlowView = ApiConsumerView.extend({
     el: '.js_show_stackoverflow_profile',
     template: _.template($('#profile_stackoverflow_template').html()),
+    too_many_template: _.template($('#too_many_stackoverflow_template').html()),
 
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
@@ -90,15 +91,19 @@ var PersonStackOverFlowView = ApiConsumerView.extend({
     },
 
     render: function() {
-        if (this.model.attributes.items.length > 0) {
-            this.$el.html(this.template(this.model.attributes.items[0]));
+        if (this.model.attributes.items.length > 1) {
+            this.too_many_returned();
         }
         else {
-            this.$el.html(this.emptyTemplate());
+            this.$el.html(this.template(this.model.attributes.items[0]));
         }
     },
 
     not_found: function(){
         this.set_error_template(this.$el);
+    },
+
+    too_many_returned: function(){
+        this.$el.html(this.too_many_template(this.model.attributes));
     }
 });
